@@ -1,19 +1,20 @@
-import { CreateReviewService } from "../service/ProductReviewService.js";
+// src/controllers/UserController.js
+
 import {
   CreateUserProfileService,
-  LoginService,
+  LogInService,
   ReadUserProfileService,
   UpdateUserProfileService,
-  VerifyLoginService,
-} from "../service/UserService.js";
+  VerifyLogInService,
+} from "../services/UserServices.js";
 
 export const Login = async (req, res) => {
-  let result = await LoginService(req);
+  let result = await LogInService(req);
   return res.json(result);
 };
 
 export const VerifyLogin = async (req, res) => {
-  let result = await VerifyLoginService(req);
+  let result = await VerifyLogInService(req);
   return res.json(result);
 };
 
@@ -29,15 +30,5 @@ export const UpdateUserProfile = async (req, res) => {
 
 export const ReadUserProfile = async (req, res) => {
   let result = await ReadUserProfileService(req);
-  return res.json(result);
-};
-
-export const CreateUserReview = async (req, res) => {
-  let result = await CreateReviewService(req);
-  return res.json(result);
-};
-
-export const UpdateUserReview = async (req, res) => {
-  let result = await CreateReviewService(req);
   return res.json(result);
 };

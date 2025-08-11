@@ -4,6 +4,8 @@ import express from "express";
 import * as BrandController from "../controllers/BrandListController.js";
 import * as CategoryController from "../controllers/CategoryController.js";
 import * as ProductController from "../controllers/ProductController.js";
+import * as UserController from "../controllers/UserController.js";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 const router = express.Router();
 
 //  Brand Routes
@@ -29,5 +31,20 @@ router.get(
   "/ProductReviewList/:ProductID",
   ProductController.ProductReviewList
 );
+
+//USERS
+router.post("/Login", UserController.Login);
+router.post("/VerifyLogin", UserController.VerifyLogin);
+router.post(
+  "/CreateUserProfile",
+  AuthMiddleware,
+  UserController.CreateUserProfile
+);
+router.post(
+  "/UpdateUserProfile",
+  AuthMiddleware,
+  UserController.UpdateUserProfile
+);
+router.get("/ReadUserProfile", AuthMiddleware, UserController.ReadUserProfile);
 
 export default router;
