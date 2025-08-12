@@ -5,7 +5,7 @@ import express from "express";
 import helmet from "helmet";
 import hpp from "hpp";
 import mongoose from "mongoose";
-import { dirname } from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
 import router from "./src/routes/api.js";
@@ -34,9 +34,9 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use("/api/v1", router);
 
-// app.use(express.static("client/dist"));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
-// });
+app.use(express.static("client/dist"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+});
 
 export default app;

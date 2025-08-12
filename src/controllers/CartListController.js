@@ -1,6 +1,8 @@
 import {
   CreateCartService,
   ReadCartService,
+  RemoveCartService,
+  UpdateCartService,
 } from "../services/CartListServices.js";
 
 export const CreateCart = async (req, res) => {
@@ -11,5 +13,11 @@ export const ReadCartList = async (req, res) => {
   let result = await ReadCartService(req);
   return res.json(result);
 };
-export const RemoveCart = async () => {};
-export const UpdateCart = async () => {};
+export const RemoveCart = async (req, res) => {
+  let result = await RemoveCartService(req);
+  return res.json(result);
+};
+export const UpdateCart = async (req, res) => {
+  let result = await UpdateCartService(req);
+  return res.json(result);
+};
