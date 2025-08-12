@@ -4,6 +4,7 @@ import express from "express";
 import * as BrandController from "../controllers/BrandListController.js";
 import * as CartListController from "../controllers/CartListController.js";
 import * as CategoryController from "../controllers/CategoryController.js";
+import * as InvoiceController from "../controllers/InvoiceController.js";
 import * as ProductController from "../controllers/ProductController.js";
 import * as UserController from "../controllers/UserController.js";
 import * as WishListController from "../controllers/WishListController.js";
@@ -60,5 +61,18 @@ router.post("/RemoveCart", AuthMiddleware, CartListController.RemoveCart);
 router.post("/CreateWish", AuthMiddleware, WishListController.CreateWish);
 router.get("/ReadWishList", AuthMiddleware, WishListController.ReadWishList);
 router.post("/RemoveWish", AuthMiddleware, WishListController.RemoveWish);
+
+//Invoice
+router.get("/CreateInvoice", AuthMiddleware, InvoiceController.CreateInvoice);
+router.get("/InvoiceList", AuthMiddleware, InvoiceController.InvoiceList);
+router.get(
+  "/InvoiceProductList/:invoice_id",
+  AuthMiddleware,
+  InvoiceController.InvoiceProductList
+);
+router.post("/PaymentSuccess/:trxID", InvoiceController.PaymentSuccess);
+router.post("/PaymentCancel/:trxID", InvoiceController.PaymentCancel);
+router.post("/PaymentFail/:trxID", InvoiceController.PaymentFail);
+router.post("/PaymentIPN/:trxID", InvoiceController.PaymentIPN);
 
 export default router;
